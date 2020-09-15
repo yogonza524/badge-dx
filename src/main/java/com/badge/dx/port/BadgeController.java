@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 public class BadgeController {
 
@@ -29,8 +31,11 @@ public class BadgeController {
 
   @GetMapping(value = "/{project}/{repo}/{badgeName}", produces = "image/svg+xml;charset=utf-8")
   public ResponseEntity find(
-      @PathVariable String project, @PathVariable String repo, @PathVariable String badgeName)
+      @PathVariable String project, @PathVariable String repo, @PathVariable String badgeName,
+        HttpServletResponse httpServletResponse
+      )
       throws IOException, GitAPIException {
+    httpServletResponse.setHeader("Cache-Control", "no-cache");
     return ResponseEntity.ok(badgeStoreService.find(project, repo, badgeName));
   }
 }
