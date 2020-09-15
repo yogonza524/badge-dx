@@ -1,7 +1,6 @@
 package com.badge.dx.config;
 
 import com.badge.dx.business.BadgeStoreService;
-import com.badge.dx.business.GithubService;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,11 +26,6 @@ public class Beans {
   @Bean
   UsernamePasswordCredentialsProvider gitCredentials() {
     return new UsernamePasswordCredentialsProvider(accessToken, "");
-  }
-
-  @Bean
-  GithubService github() {
-    return new GithubService(accessToken, gitCredentials());
   }
 
   @Bean
