@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
@@ -168,7 +167,19 @@ public class BadgeStoreService {
         Badge.builder().badgeName(request.getBadgeName()).badgenUrl(urlEncoded).build();
     addBadgeForRepo(request.getProject() + "/" + request.getRepo(), newBadge);
 
-    return newBadge;
+    String outputUrl =
+        System.getenv("SERVER_URL") != null ? System.getenv("SERVER_URL") : "http://localhost:8080";
+    return Badge.builder()
+        .badgeName(request.getBadgeName())
+        .badgenUrl(
+            outputUrl
+                + "/"
+                + request.getProject()
+                + "/"
+                + request.getRepo()
+                + "/"
+                + request.getBadgeName())
+        .build();
   }
 
   private String encodeUrl(IncomingRequest request, String BADGEN_URL)
