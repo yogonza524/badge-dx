@@ -1,6 +1,5 @@
 package com.badge.dx.port;
 
-import com.badge.dx.business.BadgeService;
 import com.badge.dx.business.BadgeStoreService;
 import com.badge.dx.port.incoming.IncomingRequest;
 import java.io.IOException;
@@ -16,11 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BadgeController {
 
-  private final BadgeService badgeService;
   private final BadgeStoreService badgeStoreService;
 
-  public BadgeController(BadgeService badgeService, BadgeStoreService badgeStoreService) {
-    this.badgeService = badgeService;
+  public BadgeController(BadgeStoreService badgeStoreService) {
     this.badgeStoreService = badgeStoreService;
   }
 

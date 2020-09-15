@@ -18,7 +18,6 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
@@ -116,9 +115,9 @@ public class BadgeStoreService {
     }
     // throw new IOException("File doesn't exists. Path: " + jsonFilePath);
 
-    return new Gson().fromJson(
-                    FileUtils.readFileToString(new File(jsonFilePath), "UTF-8")
-            , BadgeJsonStore.class);
+    return new Gson()
+        .fromJson(
+            FileUtils.readFileToString(new File(jsonFilePath), "UTF-8"), BadgeJsonStore.class);
   }
 
   public void addBadgeForRepo(String repoName, Badge badge) throws IOException, GitAPIException {
@@ -170,7 +169,8 @@ public class BadgeStoreService {
     return newBadge;
   }
 
-  private String encodeUrl(IncomingRequest request, String BADGEN_URL) throws UnsupportedEncodingException {
+  private String encodeUrl(IncomingRequest request, String BADGEN_URL)
+      throws UnsupportedEncodingException {
     return BADGEN_URL
         .replaceAll("\\$subject", URLEncoder.encode(request.getSubject(), "UTF-8"))
         .replaceAll("\\$status", URLEncoder.encode(request.getStatus(), "UTF-8"))
