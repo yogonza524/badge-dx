@@ -22,6 +22,6 @@ public class SwaggerConfig {
   }
 
   private Server defineServers() {
-    return new Server().url("http://localhost:8080/").description("Badge DX API Rest");
+    return new Server().url("https://badge-dx.herokuapp.com/").description("Badge DX API Rest");
   }
 }
