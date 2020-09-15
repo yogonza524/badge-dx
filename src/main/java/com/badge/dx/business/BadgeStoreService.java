@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -25,6 +26,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LsRemoteCommand;
@@ -114,7 +116,9 @@ public class BadgeStoreService {
     }
     // throw new IOException("File doesn't exists. Path: " + jsonFilePath);
 
-    return new Gson().fromJson(Files.readString(Paths.get(jsonFilePath)), BadgeJsonStore.class);
+    return new Gson().fromJson(
+                    FileUtils.readFileToString(new File(jsonFilePath), "UTF-8")
+            , BadgeJsonStore.class);
   }
 
   public void addBadgeForRepo(String repoName, Badge badge) throws IOException, GitAPIException {
@@ -166,12 +170,12 @@ public class BadgeStoreService {
     return newBadge;
   }
 
-  private String encodeUrl(IncomingRequest request, String BADGEN_URL) {
+  private String encodeUrl(IncomingRequest request, String BADGEN_URL) throws UnsupportedEncodingException {
     return BADGEN_URL
-        .replaceAll("\\$subject", URLEncoder.encode(request.getSubject(), StandardCharsets.UTF_8))
-        .replaceAll("\\$status", URLEncoder.encode(request.getStatus(), StandardCharsets.UTF_8))
-        .replaceAll("\\$icon", URLEncoder.encode(request.getIcon(), StandardCharsets.UTF_8))
-        .replaceAll("\\$color", URLEncoder.encode(request.getColor(), StandardCharsets.UTF_8));
+        .replaceAll("\\$subject", URLEncoder.encode(request.getSubject(), "UTF-8"))
+        .replaceAll("\\$status", URLEncoder.encode(request.getStatus(), "UTF-8"))
+        .replaceAll("\\$icon", URLEncoder.encode(request.getIcon(), "UTF-8"))
+        .replaceAll("\\$color", URLEncoder.encode(request.getColor(), "UTF-8"));
   }
 
   public byte[] find(String project, String repo, String badgeName)
