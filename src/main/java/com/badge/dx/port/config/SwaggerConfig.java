@@ -18,7 +18,12 @@ public class SwaggerConfig {
             new Info()
                 .contact(new Contact().email("yogonza524@gmail.com").name("Gonzalo H. Mendoza")))
         .components(new Components())
+        .addServersItem(localServer())
         .addServersItem(defineServers());
+  }
+
+  private Server localServer() {
+    return new Server().url("http://localhost:8080/").description("Badge DX API Rest");
   }
 
   private Server defineServers() {

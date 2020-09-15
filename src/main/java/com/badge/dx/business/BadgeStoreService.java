@@ -4,6 +4,8 @@ import com.badge.dx.domain.Badge;
 import com.badge.dx.domain.BadgeForRepo;
 import com.badge.dx.domain.BadgeJsonStore;
 import com.badge.dx.port.incoming.IncomingRequest;
+import com.google.common.escape.Escaper;
+import com.google.common.net.UrlEscapers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -171,11 +173,12 @@ public class BadgeStoreService {
 
   private String encodeUrl(IncomingRequest request, String BADGEN_URL)
       throws UnsupportedEncodingException {
+    Escaper scaper = UrlEscapers.urlFragmentEscaper();
     return BADGEN_URL
-        .replaceAll("\\$subject", URLEncoder.encode(request.getSubject(), "UTF-8"))
-        .replaceAll("\\$status", URLEncoder.encode(request.getStatus(), "UTF-8"))
-        .replaceAll("\\$icon", URLEncoder.encode(request.getIcon(), "UTF-8"))
-        .replaceAll("\\$color", URLEncoder.encode(request.getColor(), "UTF-8"));
+        .replaceAll("\\$subject", scaper.escape(request.getSubject()))
+        .replaceAll("\\$status", scaper.escape(request.getStatus()))
+        .replaceAll("\\$icon", scaper.escape(request.getIcon()))
+        .replaceAll("\\$color", scaper.escape(request.getColor()));
   }
 
   public byte[] find(String project, String repo, String badgeName)
