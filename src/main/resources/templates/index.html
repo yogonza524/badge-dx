@@ -13,10 +13,7 @@
     <p>Lightweight service aimed to generate statics badges for Github <strong>Open source repos</strong>.<br>
         <strong>Important</strong>: Badges generated are immutable, if you want to change the values you should re-send creation request again.</p>
     <h2 id="samples">Samples</h2>
-    <p><img src="https://badge-dx.herokuapp.com/yogonza524/roman-code/prueba1" alt="No cache"><br>
-        <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/mutations-badge" alt="mutations-badge by Badge DX"><br>
-        <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/dolar-blue-badge" alt="mutations-badge by Badge DX"><br>
-        <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/happyness-badge" alt="mutations-badge by Badge DX"></p>
+    <p><img src="https://badge-dx.herokuapp.com/yogonza524/OSSRH-60612/last-commiter-badge" alt="last-commiter-badge by Badge DX"> <img src="https://badge-dx.herokuapp.com/yogonza524/roman-code/prueba1" alt="No cache"> <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/mutations-badge" alt="mutations-badge by Badge DX"> <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/dolar-blue-badge" alt="mutations-badge by Badge DX"> <img src="https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/happyness-badge" alt="mutations-badge by Badge DX"></p>
     <h2 id="watch-an-example">Watch an example</h2>
     <p><a href="https://i.imgur.com/ZCekjht.mp4"><img src="https://i.imgur.com/ZCekjht.gif" alt="Watch the video"></a></p>
     <h2 id="core">Core</h2>
@@ -29,21 +26,21 @@
         <li>Then you should capture the metric and send a request to this service like this</li>
     </ul>
     <pre class=" language-bash"><code class="prism  language-bash">curl -X POST <span class="token string">"https://badge-dx.herokuapp.com/create"</span> \
-	-H  <span class="token string">"accept: */*"</span> -H  <span class="token string">"Content-Type: application/json"</span> \
-	-d <span class="token string">'{
-	   "project":"YOUR_USERNAME_AT_GITHUB",
-	   "repo":"YOUR_REPO_NAME_AT_GITHUB",
-	   "subject":"mutation-test",
-	   "status": "YOUR_METRIC",
-	   "color":"COLOR_LIKE_GREEN",
-	   "icon":"SOME_ICON_LIKE_GITHUB",
-	   "badgeName":"MY_BADGE_NAME"
-	}'</span>
+   -H  <span class="token string">"accept: */*"</span> -H  <span class="token string">"Content-Type: application/json"</span> \
+ -d <span class="token string">'{
+   "project":"YOUR_USERNAME_AT_GITHUB",
+   "repo":"YOUR_REPO_NAME_AT_GITHUB",
+   "subject":"mutation-test",
+   "status":"YOUR_METRIC",
+   "color":"COLOR_LIKE_GREEN",
+   "icon":"SOME_ICON_LIKE_GITHUB",
+   "badgeName":"MY_BADGE_NAME"
+}'</span>
 </code></pre>
     <p>Response</p>
     <pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
-	  <span class="token string">"badgeName"</span><span class="token punctuation">:</span> <span class="token string">"MY_BADGE_NAME"</span><span class="token punctuation">,</span>
-	  <span class="token string">"badgenUrl"</span><span class="token punctuation">:</span> <span class="token string">"https://badge-dx.herokuapp.com/YOUR_USERNAME_AT_GITHUB/YOUR_REPO_NAME_AT_GITHUB/MY_BADGE_NAME"</span>
+  <span class="token string">"badgeName"</span><span class="token punctuation">:</span> <span class="token string">"MY_BADGE_NAME"</span><span class="token punctuation">,</span>
+  <span class="token string">"badgenUrl"</span><span class="token punctuation">:</span> <span class="token string">"https://badge-dx.herokuapp.com/YOUR_USERNAME_AT_GITHUB/YOUR_REPO_NAME_AT_GITHUB/MY_BADGE_NAME"</span>
 <span class="token punctuation">}</span>
 </code></pre>
     <p>Now you can copy the <strong>badgenUrl</strong> to your <a href="http://README.md">README.md</a></p>
@@ -51,7 +48,7 @@
     <p>Github uses Camo as image proxy server so maybe your badge will cached for a long time. To hack this you can erase Camo cache using:</p>
     <pre class=" language-bash"><code class="prism  language-bash">curl -X GET <span class="token string">"https://badge-dx.herokuapp.com/camo/YOUR_USERNAME_AT_GITHUB/YOUR_REPO_NAME_AT_GITHUB"</span> -H  <span class="token string">"accept: */*"</span>
 </code></pre>
-    <div class="mermaid"><svg xmlns="http://www.w3.org/2000/svg" id="mermaid-svg-52KNxT0gu32PUfQc" height="100%" width="100%" style="max-width:450px;" viewBox="-50 -10 450 231"><g></g><g><line id="actor215" x1="75" y1="5" x2="75" y2="220" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Actions</tspan></text></g><g><line id="actor216" x1="275" y1="5" x2="275" y2="220" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Badge DX</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">/create</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">badge</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="0" y="155" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="187.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Actions</tspan></text></g><g><rect x="200" y="155" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="187.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Badge DX</tspan></text></g></svg></div>
+    <div class="mermaid"><svg xmlns="http://www.w3.org/2000/svg" id="mermaid-svg-eb1BD70WAMRCRbzx" height="100%" width="100%" style="max-width:450px;" viewBox="-50 -10 450 231"><g></g><g><line id="actor229" x1="75" y1="5" x2="75" y2="220" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Actions</tspan></text></g><g><line id="actor230" x1="275" y1="5" x2="275" y2="220" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Badge DX</tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><g><text x="175" y="93" class="messageText" style="text-anchor: middle;">/create</text><line x1="75" y1="100" x2="275" y2="100" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><text x="175" y="128" class="messageText" style="text-anchor: middle;">badge</text><line x1="275" y1="135" x2="75" y2="135" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" style="fill: none;"></line></g><g><rect x="0" y="155" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="187.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="75" dy="0">Actions</tspan></text></g><g><rect x="200" y="155" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="187.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle;"><tspan x="275" dy="0">Badge DX</tspan></text></g></svg></div>
     <h2 id="test-with-swagger">Test with Swagger</h2>
     <p><a href="https://badge-dx.herokuapp.com/swagger-ui">https://badge-dx.herokuapp.com/swagger-ui</a></p>
     <h2 id="author">Author</h2>
