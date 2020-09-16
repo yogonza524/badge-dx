@@ -3,6 +3,9 @@
 Lightweight service aimed to generate statics badges for Github **Open source repos**.
 **Important**: Badges generated are immutable, if you want to change the values you should re-send creation request again.
 
+## Watch an example
+[![Watch the video](https://i.imgur.com/ZCekjht.gif)](https://i.imgur.com/ZCekjht.mp4)
+
 
 ## Core
 
@@ -41,6 +44,12 @@ Github uses Camo as image proxy server so maybe your badge will cached for a lon
 curl -X GET "https://badge-dx.herokuapp.com/camo/YOUR_USERNAME_AT_GITHUB/YOUR_REPO_NAME_AT_GITHUB" -H  "accept: */*"
 ```
 
+```mermaid
+sequenceDiagram
+Actions ->> Badge DX: /create
+Badge DX->>Actions: badge
+
+```
 ## Test with Swagger
 [https://badge-dx.herokuapp.com/swagger-ui](https://badge-dx.herokuapp.com/swagger-ui)
 
