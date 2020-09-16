@@ -3,6 +3,12 @@
 Lightweight service aimed to generate statics badges for Github **Open source repos**.
 **Important**: Badges generated are immutable, if you want to change the values you should re-send creation request again.
 
+## Samples
+![No cache](https://badge-dx.herokuapp.com/yogonza524/roman-code/prueba1)
+![mutations-badge by Badge DX](https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/mutations-badge)
+![mutations-badge by Badge DX](https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/dolar-blue-badge)
+![mutations-badge by Badge DX](https://badge-dx.herokuapp.com/yogonza524/badge-dx-static/happyness-badge)
+
 ## Watch an example
 [![Watch the video](https://i.imgur.com/ZCekjht.gif)](https://i.imgur.com/ZCekjht.mp4)
 
