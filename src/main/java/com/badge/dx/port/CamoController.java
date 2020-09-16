@@ -16,10 +16,10 @@ public class CamoController {
   }
 
   @GetMapping("/camo/{project}/{repo}")
-  public ResponseEntity eraseCache(
-          @PathVariable String project,
-          @PathVariable String repo) throws IOException {
+  public ResponseEntity eraseCache(@PathVariable String project, @PathVariable String repo)
+      throws IOException {
     this.camoEraserService.eraseCache(project + "/" + repo);
-    return ResponseEntity.ok("Request for erase Camo Cache of " + project + "/" + repo + " executed");
+    return ResponseEntity.ok(
+        "Request for erase Camo Cache of " + project + "/" + repo + " executed");
   }
 }

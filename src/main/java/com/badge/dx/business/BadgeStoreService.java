@@ -44,7 +44,10 @@ public class BadgeStoreService {
   private final CamoEraserService camoEraserService;
 
   public BadgeStoreService(
-          UsernamePasswordCredentialsProvider credentials, String storageGitUrl, String storeFileName, CamoEraserService camoEraserService)
+      UsernamePasswordCredentialsProvider credentials,
+      String storageGitUrl,
+      String storeFileName,
+      CamoEraserService camoEraserService)
       throws GitAPIException {
     this.credentials = credentials;
     this.storeFileName = storeFileName;
@@ -170,14 +173,15 @@ public class BadgeStoreService {
     addBadgeForRepo(request.getProject() + "/" + request.getRepo(), newBadge);
 
     // Erase cache
-    new Thread(() -> {
-      try {
-        camoEraserService.eraseCache(request.getProject() + "/" + request.getRepo());
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    })
-            .start();
+    new Thread(
+            () -> {
+              try {
+                camoEraserService.eraseCache(request.getProject() + "/" + request.getRepo());
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+            })
+        .start();
 
     String outputUrl =
         System.getenv("SERVER_URL") != null ? System.getenv("SERVER_URL") : "http://localhost:8080";

@@ -31,7 +31,8 @@ public class Beans {
 
   @Bean
   BadgeStoreService badgeStoreService() throws GitAPIException {
-    return new BadgeStoreService(gitCredentials(), storageUrlRepo, storageFileName, camoEraserService());
+    return new BadgeStoreService(
+        gitCredentials(), storageUrlRepo, storageFileName, camoEraserService());
   }
 
   @Bean

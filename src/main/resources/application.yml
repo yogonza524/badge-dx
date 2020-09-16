@@ -1,4 +1,4 @@
 github:
-  storage: https://github.com/yogonza524/badge-dx-static.git
+  storage: ${GITHUB_STORAGE_REPO}
   personalAccesKey: ${GITHUB_PERSONAL_ACCESS_KEY}
   storageFileName: badges.json
