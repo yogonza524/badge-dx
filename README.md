@@ -20,7 +20,7 @@ curl -X POST "https://badge-dx.herokuapp.com/create" \
 	   "project":"YOUR_USERNAME_AT_GITHUB",
 	   "repo":"YOUR_REPO_NAME_AT_GITHUB",
 	   "subject":"mutation-test",
-	   "status": "Passed 95%",
+	   "status": "YOUR_METRIC",
 	   "color":"COLOR_LIKE_GREEN",
 	   "icon":"SOME_ICON_LIKE_GITHUB",
 	   "badgeName":"MY_BADGE_NAME"
@@ -41,12 +41,6 @@ Github uses Camo as image proxy server so maybe your badge will cached for a lon
 curl -X GET "https://badge-dx.herokuapp.com/camo/YOUR_USERNAME_AT_GITHUB/YOUR_REPO_NAME_AT_GITHUB" -H  "accept: */*"
 ```
 
-```mermaid
-sequenceDiagram
-Actions ->> Badge DX: /create
-Badge DX->>Actions: badge
-
-```
 ## Test with Swagger
 [https://badge-dx.herokuapp.com/swagger-ui](https://badge-dx.herokuapp.com/swagger-ui)
 
