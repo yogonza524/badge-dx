@@ -5,7 +5,6 @@ import com.badge.dx.business.CamoEraserService;
 import com.badge.dx.port.incoming.IncomingRequest;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.springframework.http.ResponseEntity;
