@@ -1,6 +1,7 @@
 package com.badge.dx.port;
 
 import com.badge.dx.business.BadgeStoreService;
+import com.badge.dx.business.CamoEraserService;
 import com.badge.dx.port.incoming.IncomingRequest;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class BadgeController {
 
   private final BadgeStoreService badgeStoreService;
+  private final CamoEraserService camoEraserService;
 
-  public BadgeController(BadgeStoreService badgeStoreService) {
+  public BadgeController(BadgeStoreService badgeStoreService, CamoEraserService camoEraserService) {
     this.badgeStoreService = badgeStoreService;
+    this.camoEraserService = camoEraserService;
   }
 
   @PostMapping("/create")
@@ -32,10 +35,8 @@ public class BadgeController {
   public ResponseEntity find(
       @PathVariable String project,
       @PathVariable String repo,
-      @PathVariable String badgeName,
-      HttpServletResponse httpServletResponse)
+      @PathVariable String badgeName)
       throws IOException, GitAPIException {
-    httpServletResponse.setHeader("Cache-Control", "no-cache");
     return ResponseEntity.ok(badgeStoreService.find(project, repo, badgeName));
   }
 }
