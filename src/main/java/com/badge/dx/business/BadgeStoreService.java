@@ -184,19 +184,22 @@ public class BadgeStoreService {
         .start();
 
     String outputUrl =
-        System.getenv("SERVER_URL") != null
-            ? System.getenv("SERVER_URL")
-            : "http://localhost:8080"
+        System.getenv("SERVER_URL") != null ? System.getenv("SERVER_URL") : "http://localhost:8080";
+
+    return Badge.builder()
+        .badgeName(request.getBadgeName())
+        .badgenUrl(
+            "!["
+                + request.getBadgeName()
+                + " by Badge DX]("
+                + outputUrl
                 + "/"
                 + request.getProject()
                 + "/"
                 + request.getRepo()
                 + "/"
-                + request.getBadgeName();
-
-    return Badge.builder()
-        .badgeName(request.getBadgeName())
-        .badgenUrl("![" + request.getBadgeName() + " by Badge DX](" + outputUrl + ")")
+                + request.getBadgeName()
+                + ")")
         .build();
   }
 
